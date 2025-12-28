@@ -1,0 +1,24 @@
+{
+  "name": "authentication-service",
+  "version": "1.0.0",
+  "description": "Demo Authentication Service",
+  "homepage": "https://github.com/tds-udesa/clase-arquitectura-software#readme",
+  "bugs": {
+    "url": "https://github.com/tds-udesa/clase-arquitectura-software/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tds-udesa/clase-arquitectura-software.git"
+  },
+  "license": "ISC",
+  "author": "Alejo Villores",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongodb": "^7.0.0"
+  }
+}
