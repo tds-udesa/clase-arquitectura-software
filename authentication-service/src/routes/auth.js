@@ -7,5 +7,4 @@ const router = express.Router()
 
 router.post('/login', checkSchema(loginSchema), loginHandler)
 
-
 module.exports = router
