@@ -1,26 +1,27 @@
 const { MongoClient } = require('mongodb');
+const { dbName, dbUrl } = require('./config');
 
 let db;
 let client;
 
 async function getConnection() {
-  if (db) return db;
+    if (db) return db;
 
-  try {
-    client = await MongoClient.connect("mongodb://root:example@localhost:27017");
-    db = client.db('Logins');
+    try {
+        client = await MongoClient.connect(dbUrl);
+        db = client.db(dbName);
 
-    return db;
-  } catch (error) {
+        return db;
+    } catch (error) {
 
-    throw error;
-  }
+        throw error;
+    }
 }
 
 async function disposeClient() {
-  if (client) {
-    await client.close();
-  }
+    if (client) {
+        await client.close();
+    }
 }
 
 module.exports = { getConnection, disposeClient };
