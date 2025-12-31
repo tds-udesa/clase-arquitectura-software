@@ -1,4 +1,5 @@
-const { getConnection } = require('../config/database');
+const { findUserByUsername } = require('../dal/credentials');
+
 function computeHash(password, salt) {
     const hash = `${password}${salt}`;
     return hash;
@@ -18,11 +19,7 @@ async function authenticateUser(username, password) {
     return hashedPassword === user.password;
 }
 
-async function findUserByUsername(username) {
-    const db = await getConnection();
-    const user = await db.collection('credentials').findOne({ username });
-    return user;
-}
 
 
-module.exports = { computeHash, authenticateUser, findUserByUsername };
+
+module.exports = { computeHash, authenticateUser };

@@ -1,4 +1,22 @@
 const { computeHash, authenticateUser } = require('../src/services/auth');
+const { findUserByUsername } = require('../src/dal/credentials');
+
+
+jest.mock('../src/dal/credentials', () => {
+    const originalModule = jest.requireActual('../src/dal/credentials');
+
+    return {
+        __esModule: true,
+        ...originalModule,
+        findUserByUsername: jest.fn(() => {
+            return Promise.resolve({
+                username: 'testuser',
+                salt: 'salt',
+                password: 'password123salt'
+            });
+        }),
+    };
+});
 
 describe('Authentication Service Layer', () => {
 
@@ -13,9 +31,8 @@ describe('Authentication Service Layer', () => {
         const username = 'testuser';
         const password = 'password123';
 
-        await authenticateUser(username, password).then((result) => {
-            expect(result).toBe(true);
-        });
-    });
+        const result = await authenticateUser(username, password)
 
+        expect(result).toBe(true);
+    });
 });
