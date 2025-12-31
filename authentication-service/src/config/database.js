@@ -17,10 +17,10 @@ async function getConnection() {
     }
 }
 
-async function disposeClient() {
+async function closeConnections() {
     if (client) {
         await client.close();
     }
 }
 
-module.exports = { getConnection, disposeClient };
+module.exports = { getConnection, closeConnections };
