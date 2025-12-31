@@ -9,8 +9,6 @@ describe('Auth Route Integration Tests', () => {
 
     beforeAll(async () => {
         const db = await getConnection();
-
-
         const salt = "salt";
         const password = "password123";
         const hashedPassword = computeHash(password, salt);
@@ -30,7 +28,6 @@ describe('Auth Route Integration Tests', () => {
 
         await disposeClient();
     });
-
 
     it('should authenticate user with correct credentials', async () => {
         const res = await request(app).post("/login").send({

@@ -1,6 +1,5 @@
 const { computeHash, authenticateUser } = require('../../src/services/auth');
 
-
 jest.mock('../../src/dal/credentials', () => {
     const originalModule = jest.requireActual('../../src/dal/credentials');
 
