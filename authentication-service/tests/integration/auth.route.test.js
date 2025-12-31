@@ -1,4 +1,4 @@
-const { getConnection, disposeClient } = require("../../src/config/database");
+const { getConnection, closeConnections } = require("../../src/config/database");
 const { computeHash } = require("../../src/services/auth");
 
 const request = require("supertest");
@@ -26,7 +26,7 @@ describe('Auth Route Integration Tests', () => {
             username: "testuser",
         });
 
-        await disposeClient();
+        await closeConnections();
     });
 
     it('should authenticate user with correct credentials', async () => {
