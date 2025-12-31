@@ -1,5 +1,4 @@
 const { computeHash, authenticateUser } = require('../src/services/auth');
-const { findUserByUsername } = require('../src/dal/credentials');
 
 
 jest.mock('../src/dal/credentials', () => {
