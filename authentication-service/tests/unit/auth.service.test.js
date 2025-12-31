@@ -1,8 +1,8 @@
-const { computeHash, authenticateUser } = require('../src/services/auth');
+const { computeHash, authenticateUser } = require('../../src/services/auth');
 
 
-jest.mock('../src/dal/credentials', () => {
-    const originalModule = jest.requireActual('../src/dal/credentials');
+jest.mock('../../src/dal/credentials', () => {
+    const originalModule = jest.requireActual('../../src/dal/credentials');
 
     return {
         __esModule: true,

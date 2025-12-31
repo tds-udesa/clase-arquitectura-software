@@ -10,7 +10,10 @@ async function loginHandler(req, res) {
 
     const { username, password } = req.body
     const isAuthenticated = await authenticateUser(username, password)
-    res.status(200).json({ message: 'Usuario autenticado: ' + isAuthenticated })
+
+    let status = isAuthenticated ? 200 : 401
+
+    res.status(status).json({ message: 'Usuario autenticado: ' + isAuthenticated })
 }
 
 
