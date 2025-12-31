@@ -13,7 +13,6 @@ async function getConnection() {
 
         return db;
     } catch (error) {
-
         throw error;
     }
 }
