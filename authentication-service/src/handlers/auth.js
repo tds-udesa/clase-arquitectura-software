@@ -9,11 +9,12 @@ async function loginHandler(req, res) {
     }
 
     const { username, password } = req.body
-    const isAuthenticated = await authenticateUser(username, password)
+    const token = await authenticateUser(username, password)
 
-    let status = isAuthenticated ? 200 : 401
+    let status = (token !== null) ? 200 : 401
+    let response = (token !== null) ? { access_token: token } : null
 
-    res.status(status).json({ message: 'Usuario autenticado: ' + isAuthenticated })
+    res.status(status).json(response)
 }
 
 
