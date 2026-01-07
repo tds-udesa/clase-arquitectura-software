@@ -4,6 +4,10 @@ const { dbName, dbUrl } = require('./config');
 let db;
 let client;
 
+/**
+ * Establishes a connection to the MongoDB database.
+ * @returns {Promise<import('mongodb').Db>} A promise that resolves to the database connection.
+ */
 async function getConnection() {
     if (db) return db;
 
@@ -17,6 +21,10 @@ async function getConnection() {
     }
 }
 
+/**
+ * Closes the database connection.
+ * @returns {Promise<void>}
+ */
 async function closeConnections() {
     if (client) {
         await client.close();

@@ -1,6 +1,12 @@
 const { authenticateUser } = require('../services/auth')
 const { validationResult } = require('express-validator');
 
+/**
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ * @returns {Promise<void>}
+ */
 async function loginHandler(req, res) {
     /*
         #swagger.tags = ['Authentication']

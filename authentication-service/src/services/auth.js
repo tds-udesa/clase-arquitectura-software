@@ -6,6 +6,10 @@ function computeHash(password, salt) {
     return hash;
 }
 
+/**
+ *
+ * @returns {string}
+ */
 function createJWT() {
     const secretKey = 'FAKE'
     const token = jwt.sign({
@@ -16,6 +20,12 @@ function createJWT() {
     return token;
 }
 
+/**
+ *
+ * @param {string} username
+ * @param {string} password
+ * @returns {Promise<string|null>}}
+ */
 async function authenticateUser(username, password) {
 
     const user = await findUserByUsername(username);

@@ -4,6 +4,7 @@ const {
 
 const globals = require("globals");
 const js = require("@eslint/js");
+const jsdoc = require("eslint-plugin-jsdoc"); // Import the JSDoc plugin
 
 const {
     FlatCompat,
@@ -25,12 +26,23 @@ module.exports = defineConfig([{
         parserOptions: {},
     },
 
-    extends: compat.extends("eslint:recommended"),
+    extends: [
+        compat.extends("eslint:recommended"),
+        "plugin:jsdoc/recommended" // Extend JSDoc recommended rules
+    ],
+
+    plugins: ["jsdoc"], // Add the JSDoc plugin
 
     files: ["**/src/**/*.js"],
 
     rules: {
         "no-unused-vars": "warn",
         "no-undef": "warn",
+        "jsdoc/check-alignment": "warn", // Ensure JSDoc comments are aligned
+        "jsdoc/check-param-names": "warn", // Check parameter names in JSDoc
+        "jsdoc/check-tag-names": "warn", // Check tag names in JSDoc
+        "jsdoc/check-types": "warn", // Check types in JSDoc
+        "jsdoc/require-param": "warn", // Require @param in JSDoc
+        "jsdoc/require-returns": "warn" // Require @returns in JSDoc
     },
 }]);
