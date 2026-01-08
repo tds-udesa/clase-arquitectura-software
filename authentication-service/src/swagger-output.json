@@ -1,0 +1,61 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Authentication Service",
+    "description": "Authentication service for the application"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Authentication related operations"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Endpoint to login a user and receive an access token.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User credentials.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "user1"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  }
+}
