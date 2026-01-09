@@ -1,7 +1,7 @@
 from src.models.user import User
 
 
-async def get_all_users() -> list[User]:
+def get_all_users() -> list[User]:
     """
     Get all users
 
@@ -63,7 +63,7 @@ async def get_all_users() -> list[User]:
     return users
 
 
-async def get_user_by_id(user_id: int) -> User | None:
+def get_user_by_id(user_id: int) -> User | None:
     """
     Get user by ID
 
@@ -72,7 +72,7 @@ async def get_user_by_id(user_id: int) -> User | None:
     :return: Description
     :rtype: User | None
     """
-    users = await get_all_users()
+    users = get_all_users()
     user = next((user for user in users if user.id == user_id), None)
 
     return user
