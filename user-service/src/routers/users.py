@@ -17,7 +17,7 @@ router = APIRouter(
     response_model=typing.List[src.models.user.User],
 )
 async def get_users() -> typing.Any:
-    users = await user_service.get_all_users()
+    users = user_service.get_all_users()
     return users
 
 
@@ -33,7 +33,7 @@ async def get_users() -> typing.Any:
     },
 )
 async def get_user(user_id: int) -> typing.Any:
-    user = await user_service.get_user_by_id(user_id)
+    user = user_service.get_user_by_id(user_id)
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="User not found"

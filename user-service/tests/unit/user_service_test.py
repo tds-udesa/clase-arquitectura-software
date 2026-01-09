@@ -2,7 +2,7 @@ from src.services.user import get_all_users, get_user_by_id
 import pytest
 
 
-
+@pytest.mark.unit
 def test_get_all_user_returns_7_users():
     # Arrange
     expected_users = 7
@@ -14,6 +14,7 @@ def test_get_all_user_returns_7_users():
     assert len(users) == expected_users
 
 
+@pytest.mark.unit
 def test_get_user_by_id_returns_correct_user():
     # Arrange & Act
     user = get_user_by_id(3)
