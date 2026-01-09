@@ -49,7 +49,7 @@ async function authenticateUser(username, password) {
     const user = await findUserByUsername(username);
 
     if (!user) {
-        return false;
+        return null;
     }
 
     var salt = user.salt;
