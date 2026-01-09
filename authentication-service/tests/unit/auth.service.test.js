@@ -10,7 +10,26 @@ jest.mock('../../src/dal/credentials', () => {
             return Promise.resolve({
                 username: 'testuser',
                 salt: 'salt',
-                password: 'password123salt'
+                password: 'password123salt',
+                user_id: 3
+            });
+        }),
+    };
+});
+
+jest.mock('../../src/services/auth', () => {
+    const originalModule = jest.requireActual('../../src/services/auth');
+
+    return {
+        __esModule: true,
+        ...originalModule,
+        getUser: jest.fn(() => {
+            return Promise.resolve({
+                name: 'testuser',
+                address: 'fake address 123',
+                email: 'fake@emai.com',
+                id: 3,
+                role: 'user'
             });
         }),
     };

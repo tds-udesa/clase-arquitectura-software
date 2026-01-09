@@ -1,5 +1,6 @@
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.routers.users import router as users_router
 
@@ -11,6 +12,18 @@ app = FastAPI(
         "name": "MIT License",
         "url": "https://opensource.org/licenses/MIT"
     }
+)
+
+origins = [
+    "http://localhost",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

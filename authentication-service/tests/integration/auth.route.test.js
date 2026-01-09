@@ -17,6 +17,7 @@ describe('Auth Route Integration Tests', () => {
             username: "testuser",
             password: hashedPassword,
             salt: salt,
+            user_id: 3
         });
     });
 

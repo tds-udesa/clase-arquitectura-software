@@ -1,6 +1,14 @@
 const { findUserByUsername } = require('../dal/credentials');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
+const userApi = require('../config/config').userApi;
 
+/**
+ *
+ * @param {string} password
+ * @param {string} salt
+ * @returns {string}
+ */
 function computeHash(password, salt) {
     const hash = `${password}${salt}`;
     return hash;
@@ -10,14 +18,24 @@ function computeHash(password, salt) {
  *
  * @returns {string}
  */
-function createJWT() {
+function createJWT(user) {
     const secretKey = 'FAKE'
-    const token = jwt.sign({
-        user: 'testuser',
-        role: 'admin'
-    }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign(user, secretKey, { expiresIn: '1h' });
 
     return token;
+}
+
+/**
+ * @param {number} user_id
+ */
+async function getUser(user_id) {
+  try {
+    const response = await axios.get(`${userApi}/users/${user_id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+
 }
 
 /**
@@ -38,7 +56,8 @@ async function authenticateUser(username, password) {
     var hashedPassword = computeHash(password, salt);
 
     if (hashedPassword === user.password) {
-        return createJWT();
+        let userInformation = await getUser(user.user_id);
+        return createJWT(userInformation);
     }
     else {
         return null;
