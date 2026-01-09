@@ -1,11 +1,44 @@
 services:
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 80:80
+
+  auth_service:
+    build: ./authentication-service
+    container_name: auth_service
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - DB_URL=mongodb://root:example@mongodb:27017
+      - DB_NAME=Logins
+      - USER_SERVICE_URL=http://user_service:8000
+    depends_on:
+      - mongodb
+      - user_service
+
+  user_service:
+    build: ./user-service
+    container_name: user_service
+    ports:
+      - 8000:8000
+
+
   mongodb:
     image: mongo:8.2.3
     container_name: mongodb
     ports:
       - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: Logins
     volumes:
       - mongodb_data:/data/db
+
 
 volumes:
   mongodb_data:
