@@ -314,3 +314,4 @@ pyrightconfig.json
 
 .idea/
 .vscode/
+*.code-workspace

@@ -1,7 +1,8 @@
 [project]
 name = "user-service"
 version = "0.1.0"
-description = "Add your description here"
+description = "User Service API Microservice"
+authors = [{name = "Alejo Villores", email = "avillores@udesa.edu.ar"}]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
