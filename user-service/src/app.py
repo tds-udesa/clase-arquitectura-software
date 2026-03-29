@@ -1,4 +1,6 @@
 
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -11,7 +13,8 @@ app = FastAPI(
     license_info= {
         "name": "MIT License",
         "url": "https://opensource.org/licenses/MIT"
-    }
+    },
+    root_path=os.getenv("ROOT_PATH", ""),
 )
 
 origins = [

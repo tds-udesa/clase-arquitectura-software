@@ -29,7 +29,7 @@ loginForm.addEventListener('submit', async (e) => {
     hideMessage();
 
     try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:3000/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ loginForm.addEventListener('submit', async (e) => {
             showMessage('Login successful! Redirecting...', 'success');
             // Redirect or handle success
             setTimeout(() => {
-                window.location.href = 'http://localhost:8000/docs';
+                window.location.href = 'http://localhost:3000/users-service/docs';
             }, 1000);
         } else {
             showMessage(data.message || 'Login failed. Please try again.', 'error');
