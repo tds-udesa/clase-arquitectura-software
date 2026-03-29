@@ -16,8 +16,8 @@ const app = express()
 app.use(cors())
 app.use(rateLimiter)
 
-const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://localhost:3001'
-const USER_SERVICE_URL = process.env.USER_SERVICE_URL || 'http://localhost:8000'
+const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://auth_service:3000'
+const USER_SERVICE_URL = process.env.USER_SERVICE_URL || 'http://user_service:8000'
 
 app.get('/', (req, res) => {
     res.send(`Welcome to the API Gateway running on port ${process.env.PORT || 3000}`)
