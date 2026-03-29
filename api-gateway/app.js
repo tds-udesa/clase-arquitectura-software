@@ -15,6 +15,10 @@ const app = express()
 
 app.use(cors())
 app.use(rateLimiter)
+app.use((req, res, next) => {
+  res.setHeader('X-Served-By', require('os').hostname())
+  next()
+})
 
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://auth_service:3000'
 const USER_SERVICE_URL = process.env.USER_SERVICE_URL || 'http://user_service:8000'
